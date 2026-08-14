@@ -144,17 +144,11 @@ language_options = ["English", "Hinglish"]
 def main():
 
     # Header
-    st.markdown("""
+   st.markdown("""
 <div class="header">
-    <div class="logo">in</div>
-
-    <div class="title">
-        LinkedIn Post Generator
-    </div>
-
-    <div class="subtitle">
-        Turn your ideas into engaging professional posts with AI
-    </div>
+<div class="logo">in</div>
+<div class="title">LinkedIn Post Generator</div>
+<div class="subtitle">Turn your ideas into engaging professional posts with AI</div>
 </div>
 """, unsafe_allow_html=True)
 
