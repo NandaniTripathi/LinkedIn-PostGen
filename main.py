@@ -267,11 +267,22 @@ def main():
 
         with st.spinner("Creating your post with AI..."):
 
-            post = generate_post(
+            post, match_tier = generate_post(
                 selected_length,
                 selected_language,
                 selected_tag
             )
+
+
+        # ---------- STYLE MATCH INDICATOR ----------
+
+        tier_messages = {
+            "exact": "✅ Matched your writing style exactly (topic, length & language).",
+            "tag_language": "🟡 Matched your style for this topic & language (length relaxed).",
+            "tag_only": "🟠 Matched your style for this topic only (language/length relaxed).",
+            "none": "⚪ No past posts on this topic yet — generated without a style reference."
+        }
+        st.caption(tier_messages.get(match_tier, ""))
 
 
         # ---------- OUTPUT HEADER ----------
