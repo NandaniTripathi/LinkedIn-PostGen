@@ -14,9 +14,9 @@ def get_length_str(length):
 
 
 def generate_post(length, language, tag):
-    prompt = get_prompt(length, language, tag)
+    prompt, match_tier = get_prompt(length, language, tag)
     response = llm.invoke(prompt)
-    return response.content
+    return response.content, match_tier
 
 
 def get_prompt(length, language, tag):
@@ -33,7 +33,7 @@ def get_prompt(length, language, tag):
     '''
     # prompt = prompt.format(post_topic=tag, post_length=length_str, post_language=language)
 
-    examples = few_shot.get_filtered_posts(length, language, tag)
+    examples, match_tier = few_shot.get_filtered_posts(length, language, tag)
 
     if len(examples) > 0:
         prompt += "4) Use the writing style as per the following examples."
@@ -45,8 +45,10 @@ def get_prompt(length, language, tag):
         if i == 1: # Use max two samples
             break
 
-    return prompt
+    return prompt, match_tier
 
 
 if __name__ == "__main__":
-    print(generate_post("Medium", "English", "Mental Health"))
+    post, tier = generate_post("Medium", "English", "Mental Health")
+    print(f"match tier: {tier}")
+    print(post)
