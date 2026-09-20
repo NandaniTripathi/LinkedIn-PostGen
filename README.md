@@ -1,5 +1,5 @@
 # LinkedIn-PostGen
-# LinkedIn Post Generator
+
 
 Generate LinkedIn posts using AI based on topic, length, and language.
 
